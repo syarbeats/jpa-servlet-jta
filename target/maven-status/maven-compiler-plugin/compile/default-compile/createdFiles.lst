@@ -1,4 +1,6 @@
 com\cdc\mitrais\jpa\controller\jpa_cmp.class
+com\cdc\mitrais\jpa\dao\IGeekDAO.class
+com\cdc\mitrais\jpa\dao\GeekDAO.class
 com\cdc\mitrais\jpa\entity\Person.class
 com\cdc\mitrais\jpa\entity\Project.class
 com\cdc\mitrais\jpa\entity\Geek.class

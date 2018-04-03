@@ -3,11 +3,7 @@ package com.cdc.mitrais.jpa.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.persistence.PersistenceContext;
-import javax.persistence.PersistenceContextType;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -18,8 +14,9 @@ import javax.servlet.http.HttpSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.cdc.mitrais.jpa.dao.GeekDAO;
 import com.cdc.mitrais.jpa.entity.Geek;
-import com.cdc.mitrais.jpa.listener.PersonListener;
+
 
 /**
  * Servlet implementation class jpa_cmp
@@ -27,8 +24,7 @@ import com.cdc.mitrais.jpa.listener.PersonListener;
 public class jpa_cmp extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final Logger logger = LoggerFactory.getLogger(jpa_cmp.class);
-
-	EntityManager entityManager = null;
+	private GeekDAO geekDAO = null;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -42,12 +38,13 @@ public class jpa_cmp extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		entityManager = PersonListener.createEntityManager() ;
+		
+		geekDAO = new GeekDAO();
+		
 		try {
-
-			@SuppressWarnings("unchecked")
-			List<Geek> geekList = entityManager.createQuery("Select e FROM Geek e").getResultList();
-
+			
+			List<Geek> geekList = geekDAO.getAllGeek();
+			
 			for(Geek geek : geekList) {
 				logger.info("Geek Data: Name:"+geek.getFirstName()+" "+geek.getLastName());
 			}
@@ -58,8 +55,8 @@ public class jpa_cmp extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/jsp/display-person.jsp");
 			dispatcher.forward(request, response);
 
-		}finally {
-			entityManager.close();
+		}finally {			
+			geekDAO.closeEntityManager();
 		}
 
 	}
