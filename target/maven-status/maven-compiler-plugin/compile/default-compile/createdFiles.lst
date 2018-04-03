@@ -1,0 +1,5 @@
+com\cdc\mitrais\jpa\controller\jpa_cmp.class
+com\cdc\mitrais\jpa\entity\Person.class
+com\cdc\mitrais\jpa\entity\Project.class
+com\cdc\mitrais\jpa\entity\Geek.class
+com\cdc\mitrais\jpa\listener\PersonListener.class
