@@ -15,6 +15,7 @@ Step
 ```
 1. Create datasource at Context.xml in Folder [ApacheTomcat]/Conf
    Copy the following datasource definition below to context.xml
+   
    <Resource
       name="jdbc/zeus"
       auth="Container"
@@ -27,6 +28,7 @@ Step
       username="root"
       password=""
     />
+    
 2. Run Apache Tomcat
 3. git clone https://github.com/syarbeats/jpa-servlet-jta.git
 4. Import to Eclipse Project
