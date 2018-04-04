@@ -13,7 +13,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 Step
 ```
-1. Create datasource at Context.xml in Folder [ApacheTomcat]/Conf
+1. Create database jpa_three and then Create datasource at Context.xml in Folder [ApacheTomcat]/Conf
    Copy the following datasource definition below to context.xml
    
    <Resource
